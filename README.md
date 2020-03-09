@@ -1,4 +1,4 @@
-## Application  VUTTR 
+## Application created with Hapi.js, together Repository Pattern. 
 
 - Creating the database(s)
 
@@ -19,4 +19,5 @@ docker run --name vuttr-mongoclient -p 3000:3000 --link vuttr-mongodb:vuttr-mong
 ## Plus of Application
   * Databases in Docker
   * Framework Hapi.js
+  * Repository Pattern
     
