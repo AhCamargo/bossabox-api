@@ -1,3 +1,9 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://ahcamargo:alc123@localhost:27017/vuttr', {useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+});

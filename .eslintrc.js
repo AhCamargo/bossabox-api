@@ -4,7 +4,6 @@ module.exports = {
       node: true,
     },
     extends: [
-      'airbnb-base',
       'prettier'
     ],
     plugins: ['prettier'],
@@ -18,10 +17,10 @@ module.exports = {
     },
     rules: {
       "prettier/prettier": "error",
-  "class-methods-use-this": "off", //todo método precisa usar o this
-  "no-param-reassign": "off", //alterar parâmetros(sequelize faz isso)
-  "camelcase": "off",
-  "no-unused-vars": ["error", { "argsIgnorePattern": "next" }], //habilitando usar variáveis sem ter que utilizar
+      "class-methods-use-this": "off", //todo método precisa usar o this
+      "no-param-reassign": "off", //alterar parâmetros(sequelize faz isso)
+      "camelcase": "off",
+      "no-unused-vars": ["error", { "argsIgnorePattern": "next" }], //habilitando usar variáveis sem ter que utilizar
     },
   };
   

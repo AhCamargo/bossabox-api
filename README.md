@@ -1,4 +1,4 @@
-## Application created with Hapi.js, together Repository Pattern. 
+## API - VUTTR(Very Useful Tools to Remember) 
 
 - Creating the database(s)
 
@@ -14,10 +14,10 @@ docker run --name vuttr-mongoclient -p 3000:3000 --link vuttr-mongodb:vuttr-mong
    --eval "db.getSiblingDB('vuttr').createUser({user:'ahcamargo', pwd: 'alc123', roles: [{role: 'readWrite', db: 'vuttr'}]})" 
 
 - Method of Creation
-  Utilized Hapi.js for construction of API, with together the designer pattern Repository
+  Utilized Hapi.js for construction of API
 
 ## Plus of Application
   * Databases in Docker
   * Framework Hapi.js
-  * Repository Pattern
+  * Designer Pattern used is Repository
     

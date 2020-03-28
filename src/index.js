@@ -1,25 +1,84 @@
-require('./services/mongodb');
+const { config } = require('dotenv');
+const { join } = require('path');
+const { ok } = require('assert');
 
-import Hapi from '@hapi/hapi';
-import Routes from './routes/routes';
+const env = process.env.NODE_ENV || 'dev';
 
-const app = Hapi.server({
-    port: 7000,
-    host: 'localhost'
+ok(env === 'prod' || env === 'dev', 'env is invalid, or dev or prod');
+
+const configPath = join(__dirname, './config', `.env.${env}`);
+config({
+  path: configPath,
 });
 
-async function main() {  
+require('./services/mongodb');
 
-    app.route(Routes);
+const Hapi = require('@hapi/hapi');
+const Vision = require('@hapi/vision');
+const Inert = require('@hapi/inert');
+const HapiSwagger = require('hapi-swagger');
+const HapiJwt = require('hapi-auth-jwt2');
 
-    await app.start();
-    console.log('Server running on %s', app.info.uri);
-};
+const JwtSecret = process.env.JWT_KEY;
 
-process.on('unhandledRejection', (err) => {
+const Routes = require('./routes/routes');
+const UsersModel = require('../src/models/usersModel');
 
-    console.log(err);
-    process.exit(1);
+const app = Hapi.server({
+  port: process.env.PORT,
+  host: 'localhost',
+});
+
+async function main() {
+  app.route(Routes);
+
+  const SwaggerOptions = {
+    info: {
+      title: 'API VUTTR - #TesteBossaBox',
+      version: 'v1.0',
+    },
+    lang: 'pt',
+  };
+
+  await app.register([
+    Vision,
+    Inert,
+    HapiJwt,
+    {
+      plugin: HapiSwagger,
+      options: SwaggerOptions,
+    },
+  ]);
+
+  await app.auth.strategy('jwt', 'jwt', {
+    key: JwtSecret,
+    validate: async item => {
+      const username = item.username;
+
+      const [user] = await UsersModel.find({
+        username,
+      });
+
+      if (!user) {
+        return {
+          isValid: false,
+        };
+      }
+      return {
+        isValid: true,
+      };
+    },
+  });
+
+  await app.auth.default('jwt');
+
+  await app.start();
+  console.log('Server running on %s', app.info.uri);
+}
+
+process.on('unhandledRejection', err => {
+  console.log(err);
+  process.exit(1);
 });
 
 main();
