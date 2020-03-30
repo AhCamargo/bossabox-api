@@ -1,0 +1,4 @@
+JWT_KEY=chavesecreta
+PORT=7000
+MONGODB_URL=mongodb://user:passwd@localhost:27017/seubanco
+SALT=3

@@ -2,6 +2,7 @@
 /node_modules
 .vscode
 .env.prod
+.env.dev
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
