@@ -6,7 +6,7 @@
 docker run  --name vuttr-mongodb -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=alc123 -d mongo:4
 
 - *Interface GUI*
-docker run --name vuttr-mongoclient -p 3000:3000 --link vuttr-mongodb:vuttr-mongodb -d mongoclient/mongoclient
+docker run --name vuttr-mongoclient -p 3030:3000 --link vuttr-mongodb:vuttr-mongodb -d mongoclient/mongoclient
   
 ## create user and create the database in the mongoDB
  docker exec -it vuttr-mongodb \
