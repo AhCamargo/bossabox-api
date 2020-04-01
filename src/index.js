@@ -25,8 +25,8 @@ const Routes = require('./routes/routes');
 const UsersModel = require('../src/models/usersModel');
 
 const app = Hapi.server({
-  port: process.env.PORT || 7000,
-  //host: 'localhost',
+  port: process.env.PORT || 3000,
+  host: 'localhost',
 });
 
 async function main() {

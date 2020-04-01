@@ -21,3 +21,6 @@ docker run --name vuttr-mongoclient -p 3030:3000 --link vuttr-mongodb:vuttr-mong
   * Framework Hapi.js
   * Designer Pattern used is Repository
     
+## Acess Application: https://vuttr-ahcamargo.herokuapp.com/documentation#/
+  * User: bossabox
+  * Passwd: Callme via e-mail hehe (andre.camargo500@gmail.com)
